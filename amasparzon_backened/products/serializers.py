@@ -4,8 +4,6 @@ from rest_framework import serializers
 
 from .models import Price, Product
 
-from user.serializers import UserSerializer
-
 class PriceSerializer(serializers.ModelSerializer):
     
     class Meta:
