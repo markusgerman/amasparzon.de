@@ -71,13 +71,15 @@ WSGI_APPLICATION = 'amasparzon_backened.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'sda',
+        'NAME': 'amasparzon_dev2',
         'USER': 'postgres',
         'PASSWORD': '1234',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
 }
+
+AUTH_USER_MODEL = 'users.MyUser'
 
 
 # Password validation
@@ -97,7 +99,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-AUTH_USER_MODEL = 'users.CustomUser'
 
 
 # Internationalization

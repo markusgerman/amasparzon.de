@@ -1,7 +1,8 @@
 from django.db import models
-from django.contrib.auth.models import User
 from django.db.models.deletion import CASCADE
+from django.conf import settings
 
+User = settings.AUTH_USER_MODEL
 
 class Product(models.Model):
     name = models.TextField()
