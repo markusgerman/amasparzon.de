@@ -5,12 +5,14 @@ from .models import Price, Product
 
 class PriceSerializer(serializers.ModelSerializer):
     
-    class Meta:
+    class Meta: 
         model = Price
         exclude = ('product',)
 
+
 class ProductSerializer(serializers.ModelSerializer):
-   
+    price_set = PriceSerializer(many=True, read_only=True)
+
     class Meta:
         model = Product
-        exclude = ('user',)
+        fields = ('id', 'user', 'name', 'link', 'image', 'price_set')

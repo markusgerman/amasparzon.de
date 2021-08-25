@@ -12,18 +12,17 @@ from .serializers import ProductSerializer, PriceSerializer
 
 class ProductList(APIView):
 
-    def get(self, request, user_id, format=None):
-        products = Product.objects.filter(user_id = user_id)
+    def get(self, request, format=None):
+        products = Product.objects.filter(user = request.user)
         serializer = ProductSerializer(products, many=True)
         return Response(serializer.data)
 
     def post(self, request):
         serializer = ProductSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            serializer.save(user = request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 
 
 class ProductDetail(APIView):

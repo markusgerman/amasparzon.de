@@ -13,8 +13,6 @@ class GenericUserList(generics.GenericAPIView, mixins.ListModelMixin,
                 mixins.RetrieveModelMixin, mixins.DestroyModelMixin):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [IsAdminUser]
-
     lookup_field = 'id'
     
     def get(self, request, id = None):
