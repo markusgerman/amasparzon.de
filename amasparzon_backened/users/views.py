@@ -1,35 +1,27 @@
+from django.http.response import Http404
 from .serializers import UserSerializer
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
 #rest-framework
-from rest_framework import generics
-from rest_framework.permissions import IsAdminUser
-from rest_framework import mixins
-from django.core.exceptions import PermissionDenied
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
 
-class GenericUserList(generics.GenericAPIView, mixins.ListModelMixin,
-                mixins.CreateModelMixin, mixins.UpdateModelMixin, 
-                mixins.RetrieveModelMixin, mixins.DestroyModelMixin):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-    lookup_field = 'id'
+
+class UserList(APIView):
+
     
-    def get(self, request, id = None):
-        if id:
-            if request.user.is_superuser:
-                return self.retrieve(request)
-            if request.user.id == id:
-                return self.retrieve(request)
-            else:
-                raise PermissionDenied()
-        else:
-            return self.list(request)
+    def get(self, request, format=None):
+        if request.user.is_admin    :
+            Users = User.objects.all()
+            serializer = UserSerializer(Users, many=True)
+            return Response(serializer.data)
+            
 
-    def post(self, request, id= None):
-        return self.create(request)
-
-    def delete(self, request, id):
-        if request.user.is_superuser or request.user.id == id:   
-            return self.destroy(request, id)
-    
+    def post(self, request, format=None):
+        serializer = UserSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

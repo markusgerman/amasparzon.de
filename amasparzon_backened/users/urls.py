@@ -3,5 +3,5 @@ from . import views
 
 app_name = 'users'
 urlpatterns = [
-    path('users/<int:id>', views.GenericUserList.as_view(), name='user-list'),
+    path('users/', views.UserList.as_view(), name='user-list'),
 ]

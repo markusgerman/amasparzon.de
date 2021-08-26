@@ -12,6 +12,7 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
                     )
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
+    is_registered = models.BooleanField(default=True)
 
     objects = MyUserManager()
 
@@ -36,3 +37,5 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
     @property
     def is_staff(self):
         return self.is_admin
+
+

@@ -1,3 +1,4 @@
+from users.models import MyUser
 from django.db import models
 from django.db.models.deletion import CASCADE
 from django.conf import settings
@@ -7,8 +8,8 @@ User = settings.AUTH_USER_MODEL
 class Product(models.Model):
     name = models.TextField()
     link = models.TextField()   
-    user = models.ForeignKey(User, related_name='products', on_delete=CASCADE)
     image = models.ImageField(upload_to='uploads/', blank=True, null=True)
+    user = models.ForeignKey(User, on_delete=CASCADE)
 
     class Meta:
         ordering = ('name',)    
@@ -32,4 +33,6 @@ class Price(models.Model):
 
     def __str__(self):
         return str(self.price)
+
+
     
