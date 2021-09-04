@@ -16,3 +16,12 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = ('id', 'user', 'name', 'link', 'image', 'price_set')
+
+class AmazonProductSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Product
+        fields = (
+            'name',
+            'image',
+        )

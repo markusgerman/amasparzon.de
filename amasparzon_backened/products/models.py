@@ -7,9 +7,9 @@ User = settings.AUTH_USER_MODEL
 
 class Product(models.Model):
     name = models.TextField()
-    link = models.TextField()   
-    image = models.ImageField(upload_to='uploads/', blank=True, null=True)
-    user = models.ForeignKey(User, on_delete=CASCADE)
+    link = models.TextField(max_length=2049)   
+    image = models.TextField(max_length=2049)
+    user = models.ForeignKey(User, on_delete=CASCADE, null=True)
 
     class Meta:
         ordering = ('name',)    

@@ -1,5 +1,6 @@
 from django.http.response import Http404, HttpResponse
 from django.shortcuts import render
+import re
 
 #rest-framework
 from rest_framework.views import APIView
@@ -7,10 +8,10 @@ from rest_framework.response import Response
 from rest_framework import status
 
 from .models import Price, Product
-from .serializers import ProductSerializer, PriceSerializer
+from .serializers import AmazonProductSerializer, ProductSerializer, PriceSerializer
 from products import serializers
 
-
+from modules.webscraper import amazon
 
 class ProductList(APIView):
 
@@ -44,3 +45,19 @@ class ProductDetail(APIView):
         product = self.get_object(product_id)
         product.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+class AmazonProduct(APIView):
+    
+    def get(self, request, product_resource, format=None):
+
+        results = amazon.scrape(product_resource)
+    
+        product = Product(
+            name= results['name'],
+            link = "",
+            image = re.findall('"([^"]*)"', results['images'])[0],
+        )
+
+        serializer = AmazonProductSerializer(product)
+
+        return Response(serializer.data)
