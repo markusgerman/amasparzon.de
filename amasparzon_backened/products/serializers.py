@@ -19,9 +19,17 @@ class ProductSerializer(serializers.ModelSerializer):
 
 class AmazonProductSerializer(serializers.ModelSerializer):
 
+    price = serializers.SerializerMethodField('_get_price')
+
     class Meta:
         model = Product
         fields = (
             'name',
             'image',
+            'price',
         )
+
+    
+    def _get_price(self, obj):
+        price = self.context.get('price')
+        return price

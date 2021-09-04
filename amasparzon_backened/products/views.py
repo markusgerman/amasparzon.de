@@ -58,6 +58,11 @@ class AmazonProduct(APIView):
             image = re.findall('"([^"]*)"', results['images'])[0],
         )
 
-        serializer = AmazonProductSerializer(product)
+        serializer = AmazonProductSerializer(
+            product,
+            context = {
+                    'price' : results['price'],
+                }
+            )
 
         return Response(serializer.data)
