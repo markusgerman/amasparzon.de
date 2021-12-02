@@ -42,7 +42,7 @@ export default {
   methods: {
     onPaste(evt) {
       this.GetAmazonProductAsync(
-        evt.clipboardData.getData("text").replace("https://www.amazon.com/", "")
+        evt.clipboardData.getData("text").replace("https://www.amazon.de/", "")
       );
     },
 

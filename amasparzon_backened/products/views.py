@@ -14,6 +14,9 @@ from products import serializers
 from modules.webscraper import amazon
 
 class ProductList(APIView):
+    """
+    Productlist of the requested user
+    """
 
     def get(self, request, format=None):
         products = Product.objects.filter(user = request.user)
@@ -29,6 +32,9 @@ class ProductList(APIView):
 
 
 class ProductDetail(APIView):
+    """
+    Productdetail of the request product
+    """
 
     def get_object(self, product_id):
         try:
@@ -46,16 +52,19 @@ class ProductDetail(APIView):
         product.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+
 class AmazonProduct(APIView):
     
     def get(self, request, product_resource, format=None):
 
         results = amazon.scrape(product_resource)
+
+        print(results)
     
         product = Product(
             name= results['name'],
             link = "",
-            image = re.findall('"([^"]*)"', results['images'])[0],
+            image = re.findall('"([^"]*)"', results['image'])[0],
         )
 
         serializer = AmazonProductSerializer(

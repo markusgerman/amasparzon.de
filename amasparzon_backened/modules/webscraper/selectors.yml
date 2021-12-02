@@ -2,10 +2,10 @@ name:
     css: '#productTitle'
     type: Text
 price:
-    css: '#price_inside_buybox'
+    css: '.a-offscreen'
     type: Text
-images:
-    css: '.imgTagWrapper img'
+image:
+    css: '#imgTagWrapperId img'
     type: Attribute
     attribute: data-a-dynamic-image
     
