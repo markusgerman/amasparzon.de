@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
+import Fishing from '../views/Fishing.vue'
 
 const routes = [
   {
@@ -7,6 +8,13 @@ const routes = [
     name: 'Home',
     component: Home
   },
+  {
+    // path: "*",
+    path: "/:catchAll(.*)",
+    name: "Fishing",
+    component: Fishing,
+  }
+  
 ]
 
 const router = createRouter({

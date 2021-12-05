@@ -22,8 +22,6 @@ def scrape(url):
         'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
     }
 
-    # Download the page using requests
-    print("Downloading %s"%url)
     r = requests.get(url, headers=headers)
     # Simple check to check if page was blocked (Usually 503)
     if r.status_code > 500:
@@ -42,7 +40,6 @@ with open("search_results_urls.txt",'r') as urllist, open('search_results_output
         if data:
             for product in data['products']:
                 product['search_url'] = url
-                print("Saving Product: %s"%product['title'])
                 json.dump(product,outfile)
                 outfile.write("\n")
                 # sleep(5)

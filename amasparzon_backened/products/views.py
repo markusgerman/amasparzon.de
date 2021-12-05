@@ -2,12 +2,16 @@ from django.http.response import Http404, HttpResponse
 from django.shortcuts import render
 import re
 
+#custom user model
+from django.contrib.auth import get_user_model
+Users = get_user_model()
+
 #rest-framework
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
-from .models import Price, Product
+from .models import Price, Product, User
 from .serializers import AmazonProductSerializer, ProductSerializer, PriceSerializer
 from products import serializers
 
@@ -24,6 +28,14 @@ class ProductList(APIView):
         return Response(serializer.data)
 
     def post(self, request, format=None):
+        
+        #check if user exists and create if not
+        if Users.objects.filter(email = request.data['email']).exists():
+            pass
+        else:
+            Users.objects.create(email = request.data['email'])
+        
+
         serializer = ProductSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -58,8 +70,6 @@ class AmazonProduct(APIView):
     def get(self, request, product_resource, format=None):
 
         results = amazon.scrape(product_resource)
-
-        print(results)
     
         product = Product(
             name= results['name'],

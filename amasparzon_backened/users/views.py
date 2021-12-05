@@ -11,9 +11,8 @@ from rest_framework import status
 
 class UserList(APIView):
 
-    
     def get(self, request, format=None):
-        if request.user.is_admin    :
+        if request.user.is_admin:
             Users = User.objects.all()
             serializer = UserSerializer(Users, many=True)
             return Response(serializer.data)
