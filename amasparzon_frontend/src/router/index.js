@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import Fishing from '../views/Fishing.vue'
+import Messages from '../views/Messages.vue'
 
 const routes = [
   {
@@ -13,6 +14,12 @@ const routes = [
     path: "/:catchAll(.*)",
     name: "Fishing",
     component: Fishing,
+  },
+  {
+    path: '/info',
+    name: 'Info',
+    component: Messages,
+    props : true
   }
   
 ]

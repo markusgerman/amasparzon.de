@@ -1,28 +1,36 @@
 <template>
 
     <div class="product">
-        <div class="lds-dual-ring" v-if="loading"></div>
-        <div class="product-card" v-else>
+        <LoadingSpinner v-if="loading" />
+        <div class="product-card" v-if ="loading == false && productavailable == true">
             <div class="product-name" id="productname">{{ productdata.name }}</div>
             <img class="product-image" :src="productdata.image" alt="productimage" />
             <div class="product-price" id="productprice">{{ productdata.price }}</div>
-
             <SaveProduct :productdata="productdata"></SaveProduct>
-
         </div> 
+        <div class="product-not-available" v-if="productavailable == false">
+            Produkt nicht vorhanden
+            <router-link to="/">Home</router-link>
+        </div>
+
+        
+
+
     </div>
 </template>
 
 <script>
 import axios from "axios";
 import SaveProduct from "./SaveProduct.vue";
+import LoadingSpinner from "./LoadingSpinner.vue";
 
 export default {
-    components: { SaveProduct },
+    components: { SaveProduct, LoadingSpinner},
     data () {
         return {
             loading: false,
             productdata: [],
+            productavailable : true,
         }
     },
     mounted() {
@@ -35,9 +43,10 @@ export default {
         await axios.get(`api/products/${product_resource}`).then((response) => {
             this.productdata = response.data;
             this.productdata['link'] = product_resource;
+            this.productavailable = true;
 
         }).catch((error) => {
-            console.log(error);
+            this.productavailable = false;
         });
         this.loading = false;
       }
@@ -49,33 +58,4 @@ export default {
 .product {
     background-color: #f5f5f5;
 }
-
-.lds-dual-ring {
-    display: inline-block;
-    width: 80px;
-    height: 80px;
-}
-
-.lds-dual-ring::after {
-    content: " ";
-    display: block;
-    width: 64px;
-    height: 64px;
-    margin: 8px;
-    border-radius: 50%;
-    border: 6px solid #fff;
-    border-color: black transparent black transparent;
-    animation: lds-dual-ring 1.2s linear infinite;
-}
-
-@keyframes lds-dual-ring {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-
 </style>

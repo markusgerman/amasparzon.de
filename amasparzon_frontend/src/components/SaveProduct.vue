@@ -17,7 +17,8 @@ export default {
 
   data() {
     return {
-      email: ""
+      email: "",
+      savingSuccessful: false,
     };
   },
 
@@ -35,6 +36,8 @@ export default {
         price_set : [{"price" : price}]
       }
       );
+
+      this.$router.push({ name: 'Info', params: {message : "Ihre E-Mail wurde gespeichert"} });
     },
   },
 }
