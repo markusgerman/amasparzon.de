@@ -1,6 +1,8 @@
 from django.db.models import fields
 from rest_framework import serializers
 
+from drf_writable_nested import WritableNestedModelSerializer
+
 from .models import Price, Product
 
 class PriceSerializer(serializers.ModelSerializer):
@@ -10,8 +12,8 @@ class PriceSerializer(serializers.ModelSerializer):
         exclude = ('product',)
 
 
-class ProductSerializer(serializers.ModelSerializer):
-    price_set = PriceSerializer(many=True, read_only=True)
+class ProductSerializer(WritableNestedModelSerializer ,serializers.ModelSerializer):
+    price_set = PriceSerializer(many=True)
 
     class Meta:
         model = Product

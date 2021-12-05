@@ -30,11 +30,13 @@ class ProductList(APIView):
     def post(self, request, format=None):
         
         #check if user exists and create if not
-        if Users.objects.filter(email = request.data['email']).exists():
-            pass
+        if Users.objects.filter(email = request.data['user']).exists():
+            user = Users.objects.get(email = request.data['user'])
         else:
-            Users.objects.create(email = request.data['email'])
-        
+            Users.objects.create(email = request.data['user'])
+            user = Users.objects.get(email = request.data['user'])
+
+        request.data['user'] = user.id 
 
         serializer = ProductSerializer(data=request.data)
         if serializer.is_valid():

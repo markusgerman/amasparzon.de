@@ -5,12 +5,15 @@
     <p> Sie werden benachrichtigt sobald sich der Preis ändert </p>
 
     <button @click="SaveProductAndMail">Speichern</button>
+
   </div>
 </template>
 
 <script>
 import axios from "axios";
 export default {
+
+  props: ['productdata'],
 
   data() {
     return {
@@ -20,9 +23,18 @@ export default {
 
   methods: {
     async SaveProductAndMail() {
-      await axios.post(`api/products/`, {
-        email: this.email
-      });
+    
+      const price = this.productdata.price.replace("€", "").replace(",", ".");
+
+      await axios.post(`api/products/`, 
+      {
+        name: this.productdata.name,
+        link : this.productdata.link,
+        image : this.productdata.image,
+        user : this.email,
+        price_set : [{"price" : price}]
+      }
+      );
     },
   },
 }

@@ -6,14 +6,19 @@
             <div class="product-name" id="productname">{{ productdata.name }}</div>
             <img class="product-image" :src="productdata.image" alt="productimage" />
             <div class="product-price" id="productprice">{{ productdata.price }}</div>
-        </div>  
+
+            <SaveProduct :productdata="productdata"></SaveProduct>
+
+        </div> 
     </div>
 </template>
 
 <script>
 import axios from "axios";
+import SaveProduct from "./SaveProduct.vue";
 
 export default {
+    components: { SaveProduct },
     data () {
         return {
             loading: false,
@@ -29,6 +34,8 @@ export default {
 
         await axios.get(`api/products/${product_resource}`).then((response) => {
             this.productdata = response.data;
+            this.productdata['link'] = product_resource;
+
         }).catch((error) => {
             console.log(error);
         });

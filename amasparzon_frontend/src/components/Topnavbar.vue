@@ -1,8 +1,7 @@
 <template>
   <div id="topnav">
   <ul>
-    <li><router-link to="foo">Anmelden</router-link></li>
-    <li><router-link to="home">Home</router-link></li>
+    <li><router-link to="/">Home</router-link></li>
   </ul>
 </div>
 </template>
