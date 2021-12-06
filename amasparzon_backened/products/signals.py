@@ -14,15 +14,15 @@ def create_user_profile(sender, instance, created, **kwargs):
     """
     if created:
 
-        context = { 'user' : instance }
+        context = { 'product' : instance }
 
         message = get_template('account_created_mail.html').render(context)
 
         mail = EmailMessage(
-            subject =  "",
+            subject =  "Wir beobachten dein Produkt jetzt!",
             body = message,
             from_email = EMAIL_HOST_USER,
-            to = [instance.email],
+            to = [instance.user.email],
         )
         mail.content_subtype = "html"
 
