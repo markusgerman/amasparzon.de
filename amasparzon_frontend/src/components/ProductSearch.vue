@@ -21,7 +21,7 @@ export default {
 
   methods: {
     onPaste(evt) {  
-      const url = "/" + evt.clipboardData.getData("text").replace("https://www.amazon.de", "");
+      const url =  evt.clipboardData.getData("text").replace("https://www.amazon.de", "");
       this.$router.push(url);
     }
   }
