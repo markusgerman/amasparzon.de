@@ -1,5 +1,4 @@
 <template>
-
     <div class="product">
         <LoadingSpinner v-if="loading" />
         <div class="product-card" v-if ="loading == false && productavailable == true">
@@ -12,10 +11,6 @@
             Produkt nicht vorhanden
             <router-link to="/">Home</router-link>
         </div>
-
-        
-
-
     </div>
 </template>
 

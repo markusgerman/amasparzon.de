@@ -3,6 +3,7 @@ from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser, PermissionsMixin
 )
 from .managers import MyUserManager
+from django.core.mail import send_mail
 
 class MyUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(
@@ -37,5 +38,14 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
     @property
     def is_staff(self):
         return self.is_admin
+
+    # def save(self, *args, **kwargs):
+    #     super(MyUser, self).save(*args, **kwargs)
+    #     self.__send_email_notification__(self.email)
+
+    #Senden einer Email-Benachrichtigung
+    # def __send_email_notification__(self, email):
+    #     send_mail("Hello wolrd", "Hello wolrd", "Hello wolrd", [email])
+        
 
 

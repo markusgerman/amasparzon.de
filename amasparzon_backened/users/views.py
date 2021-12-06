@@ -1,4 +1,4 @@
-from django.http.response import Http404
+from django.http.response import Http404, HttpResponse
 from .serializers import UserSerializer
 from django.contrib.auth import get_user_model
 User = get_user_model()

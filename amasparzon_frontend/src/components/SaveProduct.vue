@@ -3,9 +3,7 @@
     <label for="email">E-Mail-Adresse</label>
     <input type="email" id="email" name="email" v-model="email" />
     <p> Sie werden benachrichtigt sobald sich der Preis ändert </p>
-
     <button @click="SaveProductAndMail">Speichern</button>
-
   </div>
 </template>
 
@@ -37,7 +35,7 @@ export default {
       }
       );
 
-      this.$router.push({ name: 'Info', params: {message : "Ihre E-Mail wurde gespeichert"} });
+      this.$router.push({ name: 'Info', params: {message : "Wir haben Ihre E-Mail erfolgreich gespeichert."} });
     },
   },
 }
