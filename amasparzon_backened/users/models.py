@@ -11,7 +11,7 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
                         max_length=255,
                         unique=True,
                     )
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
     is_registered = models.BooleanField(default=True)
 
@@ -38,14 +38,6 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
     @property
     def is_staff(self):
         return self.is_admin
-
-    # def save(self, *args, **kwargs):
-    #     super(MyUser, self).save(*args, **kwargs)
-    #     self.__send_email_notification__(self.email)
-
-    #Senden einer Email-Benachrichtigung
-    # def __send_email_notification__(self, email):
-    #     send_mail("Hello wolrd", "Hello wolrd", "Hello wolrd", [email])
         
 
 

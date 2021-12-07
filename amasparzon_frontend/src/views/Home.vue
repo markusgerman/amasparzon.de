@@ -1,22 +1,37 @@
 <template>
   <div>
       <Topnavbar />
-      blabla willkommen auf amasparzon 
 
-      <ProductSearch />
+      <Header />
+
+      <ProductSearchWrapper />
+
+      <SectionTutorial />
+
+      <About />
+
+      <Footer />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import Topnavbar from '../components/Topnavbar.vue'
-import ProductSearch from '../components/ProductSearch.vue'
+import ProductSearchWrapper from '../components/ProductSearchWrapper.vue'
+import Header from '../components/Header.vue'
+import SectionTutorial from '../components/SectionTutorial.vue'
+import About from '../components/About.vue'
+import Footer from '../components/Footer.vue'
 
 export default {
   name: 'Home',
   components: {
     Topnavbar,
-    ProductSearch
+    ProductSearchWrapper,
+    Header,
+    SectionTutorial,
+    About,
+    Footer,
   }
 }
 </script>

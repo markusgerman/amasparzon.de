@@ -23,7 +23,7 @@ export default {
     margin: 8px;
     border-radius: 50%;
     border: 6px solid #fff;
-    border-color: black transparent black transparent;
+    border-color: #2C3E50 transparent #2C3E50 transparent;
     animation: lds-dual-ring 1.2s linear infinite;
 }
 
