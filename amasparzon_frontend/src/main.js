@@ -6,6 +6,9 @@ import axios from 'axios'
 
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap"
+import 'bootstrap-icons/font/bootstrap-icons.css'
+
+import "./assets/css/style.scss"
 
 axios.defaults.baseURL = 'http://127.0.0.1:8000'
 

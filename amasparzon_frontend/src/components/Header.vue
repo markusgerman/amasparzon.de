@@ -1,19 +1,20 @@
 <template>
-  <header class="masthead text-white text-center">
-        <div class="container d-flex align-items-center flex-column">
-            <!-- Masthead Avatar Image-->
-            <img class="masthead-avatar mb-5" src="../assets/avataaars.svg" alt="..." />
-        
-            <!-- Masthead Heading-->
-            <h1 class="masthead-heading text-uppercase mb-0">amaSPARzon</h1>
+  <div class="header-wrapper bg-quinary">
+    <header class="masthead text-white text-center bg-primary">
+          <div class="container d-flex align-items-center flex-column">
+              <!-- Masthead Avatar Image-->
+              <img class="masthead-avatar mb-5" src="../assets/avataaars.svg" alt="..." />
+          
+              <!-- Masthead Heading-->
+              <h1 class="masthead-heading text-uppercase mb-0">amasparzon</h1>
 
-            <!-- Masthead Subheading-->
-            <div class="typewriter">
-              <h3>Dein Preisvergleichsportal</h3>
-            </div>
-
-        </div>
-    </header>
+              <!-- Masthead Subheading-->
+              <div class="typewriter">
+                <h3>Dein Preisvergleichsportal</h3>
+              </div>
+          </div>
+      </header>
+  </div>
 </template>
 
 <script>
@@ -24,8 +25,9 @@ export default {
 
 
 <style scoped>
+
 .masthead{
-    background-color: #1ABC9C;
+  clip-path: ellipse(123% 100% at 78.47% 0%);
 }
 
 .masthead .masthead-heading {
@@ -39,17 +41,21 @@ export default {
   width: 15rem;
 }
 
-@media (min-width: 992px) {
+.masthead {
+  padding-top: calc(6rem + 104px);
+  padding-bottom: 6rem;
+}
+.masthead .masthead-heading {
+  font-size: 4rem;
+  line-height: 3.5rem;
+}
+.masthead .masthead-subheading {
+  font-size: 1.5rem;
+}
+
+@media only screen and (max-width: 1000px) {
   .masthead {
-    padding-top: calc(6rem + 104px);
-    padding-bottom: 6rem;
-  }
-  .masthead .masthead-heading {
-    font-size: 4rem;
-    line-height: 3.5rem;
-  }
-  .masthead .masthead-subheading {
-    font-size: 1.5rem;
+      clip-path: none;
   }
 }
 
@@ -73,6 +79,6 @@ export default {
 /* The typewriter cursor effect */
 @keyframes blink-caret {
   from, to { border-color: transparent }
-  50% { border-color: #2C3E50; }
+  50% { border-color: orange; }
 }
 </style>

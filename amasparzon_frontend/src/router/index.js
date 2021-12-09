@@ -3,6 +3,8 @@ import Home from '../views/Home.vue'
 import Fishing from '../views/Fishing.vue'
 import Messages from '../views/Messages.vue'
 
+document.title = "amasparzon.de";
+
 const routes = [
   {
     path: '/',

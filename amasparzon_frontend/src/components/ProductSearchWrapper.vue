@@ -1,5 +1,5 @@
 <template>
-    <section class="page-section ProductSearchWrapper" id="sparen">
+    <section class="page-section ProductSearchWrapper bg-quinary" id="sparen">
         <div class="container">
             <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Jetzt Vergleichen</h2>
             <div class="row justify-content-center">

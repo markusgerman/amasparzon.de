@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="home">
       <Topnavbar />
 
       <Header />
@@ -35,3 +35,20 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+
+.home {
+  overflow-x: hidden;
+}
+
+@media screen and (max-width: 768px) {
+    .home { padding-top: 50px; }
+}
+
+
+body {
+  font-family: "Times New Roman", Times, serif;
+}
+
+</style>

@@ -1,9 +1,13 @@
 <template>
   <div>
-    <label for="email">E-Mail-Adresse</label>
-    <input type="email" id="email" name="email" v-model="email" />
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-default">E-Mail Adresse</span>
+      </div>
+      <input class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" type="email" id="email" name="email" v-model="email">
+    </div>
     <p> Sie werden benachrichtigt sobald sich der Preis ändert </p>
-    <button @click="SaveProductAndMail">Speichern</button>
+    <button class="btn btn-primary" @click="SaveProductAndMail">Speichern</button>
   </div>
 </template>
 

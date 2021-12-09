@@ -1,20 +1,17 @@
 <template>
-  <footer class="footer text-center">
+  <footer class="footer text-center bg-secondary">
     <div class="container">
-      <!-- Footer Social Icons-->
-      <h4 class="text-uppercase mb-4">Social Media</h4>
-      <a class="btn btn-outline-light btn-social mx-1" href="https://www.xing.com/profile/Markus_German/"
-        ><i class="fab fa-fw fa-facebook-f"></i
-      ></a>
-      <a class="btn btn-outline-light btn-social mx-1" href="#!"
-        ><i class="fab fa-fw fa-twitter"></i
-      ></a>
-      <a class="btn btn-outline-light btn-social mx-1" href="#!"
-        ><i class="fab fa-fw fa-linkedin-in"></i
-      ></a>
-      <a class="btn btn-outline-light btn-social mx-1" href="#!"
-        ><i class="fab fa-fw fa-dribbble"></i
-      ></a>
+      <div class="row">
+        <div class="col-sm">
+          <a href="impressum" class="t">Impressum</a><br>
+          <a href="datenschutz" class="t">Datenschutz</a>
+        </div>
+        <div class="col-sm">
+          <h4 class="text-uppercase mb-4">Social Media</h4>
+          <a href ="https://github.com/markusgerman/amasparzon.de/"> <i class="bi bi-github"></i></a>
+        </div>
+        <div class="col-sm">© {{ new Date().getFullYear() }} Markus German</div>
+      </div>
     </div>
   </footer>
 </template>
@@ -27,7 +24,16 @@ export default {};
 .footer {
   padding-top: 5rem;
   padding-bottom: 5rem;
-  background-color: #2c3e50;
   color: #fff;
 }
+
+.bi{
+  padding: 20px;
+  font-size: 20px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+}
+
+
 </style>
