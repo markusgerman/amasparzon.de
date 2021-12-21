@@ -72,7 +72,10 @@ class AmazonProduct(APIView):
     def get(self, request, product_resource, format=None):
 
         results = amazon.scrape(product_resource)
-    
+
+        if results['name'] == None:
+            return Response(status=status.HTTP_404_NOT_FOUND)  
+
         product = Product(
             name= results['name'],
             link = "",

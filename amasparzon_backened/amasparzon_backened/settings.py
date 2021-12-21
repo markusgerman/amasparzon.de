@@ -10,10 +10,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# Url of the frontend
+
+FRONTEND_URL = "http://localhost:8080"
+
 # SECURITY WARNING: keep the secret key used in production secret!
 
 if DEBUG == False:
     SECRET_KEY = config("SECRET_KEY")
+    
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SAMESITE = 'None'
+    SESSION_COOKIE_SAMESITE = 'None'
 else:
     SECRET_KEY = '2x$e%!k_u_0*gq0s4!_u(2(^lpy&gir0hg)q&5nurj0-sseuav'
 

@@ -4,6 +4,7 @@ from django.contrib.auth.models import (
 )
 from .managers import MyUserManager
 from django.core.mail import send_mail
+import uuid
 
 class MyUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(
@@ -14,6 +15,7 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
     is_registered = models.BooleanField(default=True)
+    user_hash = models.UUIDField(primary_key=False, default=uuid.uuid4, editable=False)
 
     objects = MyUserManager()
 

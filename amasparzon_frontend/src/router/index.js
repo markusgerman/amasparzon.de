@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import Fishing from '../views/Fishing.vue'
 import Messages from '../views/Messages.vue'
+import DeleteProfil from '../views/DeleteProfil.vue'
 
 document.title = "amasparzon.de";
 
@@ -22,8 +23,12 @@ const routes = [
     name: 'Info',
     component: Messages,
     props : true
+  },
+  {
+    path: '/profildelete',
+    name: 'ProfilDelete',
+    component: DeleteProfil,
   }
-  
 ]
 
 const router = createRouter({

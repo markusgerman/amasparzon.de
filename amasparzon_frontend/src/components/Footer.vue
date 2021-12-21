@@ -22,17 +22,15 @@ export default {};
 
 <style scoped>
 .footer {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
   color: #fff;
 }
 
 .bi{
-  padding: 20px;
   font-size: 20px;
   text-align: center;
   text-decoration: none;
-  margin: 5px 2px;
 }
 
 
