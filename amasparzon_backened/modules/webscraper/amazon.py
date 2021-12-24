@@ -27,8 +27,6 @@ def scrape(url):
 
     r = requests.get(url, headers=headers)
 
-    print(r.text)
-
     # Simple check to check if page was blocked (Usually 503)
     if r.status_code > 500:
         if "To discuss automated access to Amazon data please contact" in r.text:
