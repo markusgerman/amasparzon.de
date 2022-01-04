@@ -28,7 +28,7 @@ class ProductList(APIView):
         return Response(serializer.data)
 
     def post(self, request, format=None):
-        
+
         #check if user exists and create if not
         if Users.objects.filter(email = request.data['user']).exists():
             user = Users.objects.get(email = request.data['user'])
@@ -38,10 +38,19 @@ class ProductList(APIView):
 
         request.data['user'] = user.id 
 
-        serializer = ProductSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        product = Product.objects.get(asin = request.data['asin'])
+
+        #check if user is already in product
+        if user in product.user.all():
+            return Response(status=status.HTTP_400_BAD_REQUEST, data={'error': 'User already in product'})
+
+        #add user to the product
+        product.user.add(user)
+
+        #send email to user
+        product.send_confirmation_mail(user)
+
+        return Response(status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -70,23 +79,36 @@ class ProductDetail(APIView):
 class AmazonProduct(APIView):
     
     def get(self, request, product_resource, format=None):
-
         results = amazon.scrape(product_resource)
 
         if results['name'] == None:
-            return Response(status=status.HTTP_404_NOT_FOUND)  
+            return Response(status=status.HTTP_404_NOT_FOUND) 
+                
+        asin = re.search(r"/dp/[a-zA-Z0-9]+", request.get_full_path(), flags=re.IGNORECASE)
+        if asin:
+            asin = asin.group(0)[4:14]
 
         product = Product(
-            name= results['name'],
-            link = "",
+            name = results['name'],
+            asin = asin,
             image = re.findall('"([^"]*)"', results['image'])[0],
         )
 
         serializer = AmazonProductSerializer(
-            product,
+            product,    
             context = {
                     'price' : results['price'],
                 }
             )
+
+        #check if product already exists and create if not
+        if Product.objects.filter(asin = asin).exists() == False:
+            product.save()
+        
+            #create first price for the product
+            Price.objects.create(
+                product = product,
+                price = float(results['price'].replace('€','').replace(',','.')),
+            ).save()
 
         return Response(serializer.data)

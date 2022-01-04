@@ -26,16 +26,13 @@ export default {
 
   methods: {
     async SaveProductAndMail() {
-    
-      const price = this.productdata.price.replace("€", "").replace(",", ".");
 
+      console.log(this.productdata.asin);
+    
       await axios.post(`api/products/`, 
       {
-        name: this.productdata.name,
-        link : this.productdata.link,
-        image : this.productdata.image,
+        asin: this.productdata.asin,
         user : this.email,
-        price_set : [{"price" : price}]
       }
       );
 
