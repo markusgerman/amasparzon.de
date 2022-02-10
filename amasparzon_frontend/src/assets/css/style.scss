@@ -1,0 +1,18 @@
+// your variable overrides
+// modify theme colors map
+$theme-colors: (
+    "primary":#007CC7,
+    "secondary" : #12232E,
+    "tertiary" : #4DA8DA,
+    "quaternary" : #203647,
+    "quinary" : #EEFBFB,
+
+);
+
+$btn-focus-box-shadow: none!important;
+
+
+$input-focus-box-shadow: none!important;
+
+
+@import "~bootstrap/scss/bootstrap";

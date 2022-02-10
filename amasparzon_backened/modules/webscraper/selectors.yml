@@ -1,0 +1,16 @@
+name:
+    css: '#productTitle'
+    type: Text
+price:
+    css: '.a-offscreen'
+    type: Text
+image:
+    css: '#imgTagWrapperId img'
+    type: Attribute
+    attribute: data-a-dynamic-image
+    
+
+
+
+
+
