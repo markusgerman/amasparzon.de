@@ -18,7 +18,7 @@ class Product(models.Model):
     class Meta:
         ordering = ('name',)    
 
-    def __str__(self) -> str:
+    def __str__(self):
         return self.name
 
     def get_product_url(self) -> str:
