@@ -11,6 +11,7 @@
       </div>
 
       <SaveProduct :productdata="productdata"></SaveProduct>
+
     </div>
     <div class="product-not-available" v-if="productavailable == false">
       Produkt nicht vorhanden

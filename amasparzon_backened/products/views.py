@@ -28,7 +28,6 @@ class ProductList(APIView):
         return Response(serializer.data)
 
     def post(self, request, format=None):
-
         #check if user exists and create if not
         if Users.objects.filter(email = request.data['user']).exists():
             user = Users.objects.get(email = request.data['user'])
@@ -42,7 +41,9 @@ class ProductList(APIView):
 
         #check if user is already in product
         if user in product.user.all():
-            return Response(status=status.HTTP_400_BAD_REQUEST, data={'error': 'User already in product'})
+            return Response(status=status.HTTP_409_CONFLICT)
+
+        print("test")
 
         #add user to the product
         product.user.add(user)
