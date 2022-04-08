@@ -6,8 +6,6 @@
 
       <ProductSearchWrapper />
 
-      <SectionTutorial />
-
       <About />
 
       <Footer />
